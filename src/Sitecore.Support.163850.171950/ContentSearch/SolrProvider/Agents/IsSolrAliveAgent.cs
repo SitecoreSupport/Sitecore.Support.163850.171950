@@ -51,6 +51,12 @@
         return;
       }
 
+      #region Sitecore.Support.171950
+
+      typeof(SolrStatus).GetProperty("InitStatusOk")?.SetValue(null, true);
+
+      #endregion
+      
       this.Log.Debug("IsSolrAliveAgent: Start indexes re-initialization");
       var reinitializedIndexes = new List<ISearchIndex>();
       foreach (var index in SolrStatus.GetIndexesForInitialization())
