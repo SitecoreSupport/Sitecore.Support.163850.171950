@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Sitecore.Support.ContentSearch.SolrProvider.Agents
+﻿namespace Sitecore.Support.ContentSearch.SolrProvider.Agents
 {
   using System;
   using System.Collections.Generic;
   using System.Linq;
-  using System.Web.Hosting;
   using Sitecore.ContentSearch.Diagnostics;
   using Sitecore.Diagnostics;
   using Sitecore.StringExtensions;
@@ -65,8 +59,21 @@ namespace Sitecore.Support.ContentSearch.SolrProvider.Agents
         {
           this.Log.Debug(" - Re-initializing index '{0}' ...".FormatWith(index.Name));
           index.Initialize();
-          this.Log.Debug(" - DONE");
-          reinitializedIndexes.Add(index);
+          
+          #region Sitecore.Support.163850
+
+          if ((index as SolrSearchIndex) == null)
+          {
+            Log.Debug($"Sitecore.Support.163850: '{index.Name}' index is not SolrSearchIndex");
+          }
+          else if ((index as SolrSearchIndex).IsInitialized)
+          {
+            this.Log.Debug($"Sitecore.Support.163850: Re-initializing index '{index.Name}' - DONE");
+            reinitializedIndexes.Add(index);
+          }
+
+          #endregion
+
         }
         catch (Exception ex)
         {
