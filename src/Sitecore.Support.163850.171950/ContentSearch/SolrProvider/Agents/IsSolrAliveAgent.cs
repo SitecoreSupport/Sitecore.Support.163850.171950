@@ -56,7 +56,7 @@
       typeof(SolrStatus).GetProperty("InitStatusOk")?.SetValue(null, true);
 
       #endregion
-      
+
       this.Log.Debug("IsSolrAliveAgent: Start indexes re-initialization");
       var reinitializedIndexes = new List<ISearchIndex>();
       foreach (var index in SolrStatus.GetIndexesForInitialization())
@@ -70,11 +70,11 @@
 
           if ((index as SolrSearchIndex) == null)
           {
-            Log.Debug($"Sitecore.Support.163850: '{index.Name}' index is not SolrSearchIndex");
+            Log.Debug($"Sitecore.Support.163850.171950: '{index.Name}' index is not SolrSearchIndex");
           }
           else if ((index as SolrSearchIndex).IsInitialized)
           {
-            this.Log.Debug($"Sitecore.Support.163850: Re-initializing index '{index.Name}' - DONE");
+            this.Log.Debug($"Sitecore.Support.163850.171950: Re-initializing index '{index.Name}' - DONE");
             reinitializedIndexes.Add(index);
           }
 
